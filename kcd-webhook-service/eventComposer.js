@@ -1,8 +1,8 @@
 const getUuid = require('uuid').v4;
 
-module.exports = (webhookBody, eventType) => {
+module.exports = (webhookBody, eventType, isTest) => {
     const dataFromWebhook = eventType === 'kentico' ?
-        { 
+        {
             subject: webhookBody.message.operation,
             data: webhookBody.data
         } :
@@ -13,6 +13,7 @@ module.exports = (webhookBody, eventType) => {
 
     return {
         id: getUuid(),
+        isTest: Boolean(isTest),
         subject: dataFromWebhook.subject,
         eventType: eventType,
         dataVersion: '1.0',
