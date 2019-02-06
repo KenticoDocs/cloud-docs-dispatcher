@@ -1,20 +1,20 @@
 {
-  "name": "kentico-cloud-docs-webhooks",
+  "name": "kentico-cloud-docs-dispatcher",
   "version": "1.0.0",
-  "description": "Kentico Cloud documentation - webhooks service",
+  "description": "Kentico Cloud Documentation - Dispatcher",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kentico/kentico-cloud-docs-webhooks.git"
+    "url": "git+https://github.com/Kentico/kentico-cloud-docs-dispatcher.git"
   },
   "author": "Kentico",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Kentico/kentico-cloud-docs-webhooks/issues"
+    "url": "https://github.com/Kentico/kentico-cloud-docs-dispatcher/issues"
   },
-  "homepage": "https://github.com/Kentico/kentico-cloud-docs-webhooks#readme",  
+  "homepage": "https://github.com/Kentico/kentico-cloud-docs-dispatcher#readme",
   "dependencies": {
     "azure-eventgrid": "^1.5.0",
     "url": "^0.11.0",
