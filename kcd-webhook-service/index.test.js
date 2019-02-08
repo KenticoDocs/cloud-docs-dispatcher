@@ -12,7 +12,7 @@ describe('Azure function fails', () => {
         done: jest.fn()
     };
 
-    await azureFunction(context, request);
+    await azureFunction(context, request, null);
     
     expect(context.res.status).toBe(400);
     expect(context.res.body).toBe('Request not valid');
@@ -34,7 +34,7 @@ describe('Azure function fails', () => {
         done: jest.fn()
     };
 
-    await azureFunction(context, request);
+    await azureFunction(context, request, null);
     
     expect(context.res.status).toBe(200);
     expect(context.res.body).toBe('Nothing published');
