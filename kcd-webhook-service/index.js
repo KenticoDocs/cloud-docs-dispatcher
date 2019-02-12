@@ -24,7 +24,7 @@ module.exports = async (context, request) => {
 
     const topicCredentials = new msRestAzure.TopicCredentials(process.env['EventGrid.DocsChanged.Key']);
     const eventGridClient = new EventGridClient(topicCredentials);
-    const publishEvents = publishEventsCreator({eventGridClient, host: process.env['EventGrid.DocsChanged.Endpoint']});
+    const publishEvents = publishEventsCreator({ eventGridClient, host: process.env['EventGrid.DocsChanged.Endpoint'] });
 
     await publishEvents([eventComposer(request.body, request.query.source, request.query.isTest)]);
 
