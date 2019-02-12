@@ -13,7 +13,7 @@ describe('Azure function fails', () => {
     };
 
     await azureFunction(context, request, null);
-    
+
     expect(context.res.status).toBe(400);
     expect(context.res.body).toBe('Request not valid');
   });
@@ -35,7 +35,7 @@ describe('Azure function fails', () => {
     };
 
     await azureFunction(context, request, null);
-    
+
     expect(context.res.status).toBe(200);
     expect(context.res.body).toBe('Nothing published');
   });

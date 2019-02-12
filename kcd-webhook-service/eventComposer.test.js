@@ -16,13 +16,13 @@ describe('eventComposer', () => {
         const isTest = null;
         const event = eventComposer(webhookBody, eventType, isTest);
 
-        expect(event.id).toBeTruthy;
+        expect(event.id).toBeTruthy();
         expect(event.isTest).toBe(false);
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
         expect(event.data).toBe(webhookBody.data);
-        expect(event.eventTime).toBeTruthy;
+        expect(event.eventTime).toBeTruthy();
     });
 
     test('composes event with invalid type', async () => {
@@ -30,13 +30,13 @@ describe('eventComposer', () => {
         const isTest = null;
         const event = eventComposer({}, eventType, isTest);
 
-        expect(event.id).toBeTruthy;
+        expect(event.id).toBeTruthy();
         expect(event.isTest).toBe(false);
         expect(event.subject).toBe(eventType);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
-        expect(event.data).toBeNull;
-        expect(event.eventTime).toBeTruthy;
+        expect(event.data).toEqual({});
+        expect(event.eventTime).toBeTruthy();
     });
 
     test('composes event with testing configuration', async () => {
@@ -44,12 +44,12 @@ describe('eventComposer', () => {
         const isTest = true;
         const event = eventComposer(webhookBody, eventType, isTest);
 
-        expect(event.id).toBeTruthy;
+        expect(event.id).toBeTruthy();
         expect(event.isTest).toBe(true);
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
         expect(event.data).toBe(webhookBody.data);
-        expect(event.eventTime).toBeTruthy;
+        expect(event.eventTime).toBeTruthy();
     });
 });
