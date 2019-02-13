@@ -13,7 +13,7 @@ module.exports = (webhookBody, eventType, isTest) => {
 
     return {
         id: getUuid(),
-        isTest: Boolean(isTest),
+        isTest: isTest === 'true',
         subject: dataFromWebhook.subject,
         eventType: eventType,
         dataVersion: '1.0',
