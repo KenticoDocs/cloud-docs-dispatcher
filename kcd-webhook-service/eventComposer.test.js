@@ -12,30 +12,16 @@ const webhookBody = {
 
 describe('eventComposer', () => {
     test('composes event with data from webhook', async () => {
-        const eventType = 'kentico';
+        const eventType = 'kentico-cloud';
         const isTest = undefined;
         const event = eventComposer(webhookBody, eventType, isTest);
 
         expect(event.id).toBeTruthy();
-        expect(event.isTest).toBe(false);
+        expect(event.test).toBe(false);
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
         expect(event.data).toBe(webhookBody.data);
-        expect(event.eventTime).toBeTruthy();
-    });
-
-    test('composes event with invalid type', async () => {
-        const eventType = 'notKentico';
-        const isTest = undefined;
-        const event = eventComposer({}, eventType, isTest);
-
-        expect(event.id).toBeTruthy();
-        expect(event.isTest).toBe(false);
-        expect(event.subject).toBe(eventType);
-        expect(event.eventType).toBe(eventType);
-        expect(event.dataVersion).toBe('1.0');
-        expect(event.data).toEqual({});
         expect(event.eventTime).toBeTruthy();
     });
 
@@ -45,7 +31,7 @@ describe('eventComposer', () => {
         const event = eventComposer(webhookBody, eventType, isTest);
 
         expect(event.id).toBeTruthy();
-        expect(event.isTest).toBe(true);
+        expect(event.test).toBe(true);
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
@@ -59,7 +45,7 @@ describe('eventComposer', () => {
         const event = eventComposer(webhookBody, eventType, isTest);
 
         expect(event.id).toBeTruthy();
-        expect(event.isTest).toBe(false);
+        expect(event.test).toBe(false);
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');

@@ -18,10 +18,10 @@ describe('Azure function fails', () => {
     expect(context.res.body).toBe('Request not valid');
   });
 
-  test('returns 200 but does nothing on kentico and content_item', async () => {
+  test('returns 200 but does nothing on kentico-cloud and content_item', async () => {
     const request = {
         query: {
-            source: 'kentico'
+            source: 'kentico-cloud'
         },
         body: {
             message: {

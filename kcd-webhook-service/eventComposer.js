@@ -1,23 +1,13 @@
 const getUuid = require('uuid').v4;
 
 module.exports = (webhookBody, eventType, isTest) => {
-    const dataFromWebhook = eventType === 'kentico' ?
-        {
-            subject: webhookBody.message.operation,
-            data: webhookBody.data
-        } :
-        {
-            subject: eventType,
-            data: {}
-        };
-
     return {
         id: getUuid(),
-        isTest: isTest === 'true',
-        subject: dataFromWebhook.subject,
+        test: isTest === 'true',
+        subject: webhookBody.message.operation,
         eventType: eventType,
         dataVersion: '1.0',
-        data: dataFromWebhook.data,
+        data: webhookBody.data,
         eventTime: new Date()
     };
 };

@@ -4,7 +4,7 @@ const publishEventsCreator = require('./publishEventsCreator');
 const eventComposer = require('./eventComposer');
 
 module.exports = async (context, request) => {
-    if (request.query.source !== 'kentico' && request.query.source !== 'initialize') {
+    if (request.query.source !== 'kentico-cloud') {
         context.res = {
             status: 400,
             body: 'Request not valid'
@@ -13,7 +13,7 @@ module.exports = async (context, request) => {
         return;
     }
 
-    if (request.query.source === 'kentico' && request.body.message.type === 'content_item') {
+    if (request.body.message.type === 'content_item') {
         context.res = {
             status: 200,
             body: 'Nothing published'
@@ -26,7 +26,7 @@ module.exports = async (context, request) => {
     const eventGridClient = new EventGridClient(topicCredentials);
     const publishEvents = publishEventsCreator({ eventGridClient, host: process.env['EventGrid.DocsChanged.Endpoint'] });
 
-    await publishEvents([eventComposer(request.body, request.query.source, request.query.isTest)]);
+    await publishEvents([eventComposer(request.body, request.query.source, request.query.test)]);
 
     context.res = {
         status: 200,
