@@ -26,10 +26,11 @@ module.exports = async (context, request) => {
     const eventGridClient = new EventGridClient(topicCredentials);
     const publishEvents = publishEventsCreator({ eventGridClient, host: process.env['EventGrid.DocsChanged.Endpoint'] });
 
-    await publishEvents([eventComposer(request.body, request.query.source, request.query.test)]);
+    var event = eventComposer(request.body, request.query.source, request.query.test);
+    await publishEvents([event]);
 
     context.res = {
         status: 200,
-        body: 'Published successfully'
+        body: event
     };
 };
