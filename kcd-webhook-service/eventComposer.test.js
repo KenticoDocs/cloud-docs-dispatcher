@@ -17,7 +17,7 @@ describe('eventComposer', () => {
         const event = eventComposer(webhookBody, eventType, isTest);
 
         expect(event.id).toBeTruthy();
-        expect(event.test).toBe(false);
+        expect(event.test).toBe(undefined);
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
@@ -31,7 +31,7 @@ describe('eventComposer', () => {
         const event = eventComposer(webhookBody, eventType, isTest);
 
         expect(event.id).toBeTruthy();
-        expect(event.test).toBe(true);
+        expect(event.test).toBe('true');
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
@@ -45,7 +45,7 @@ describe('eventComposer', () => {
         const event = eventComposer(webhookBody, eventType, isTest);
 
         expect(event.id).toBeTruthy();
-        expect(event.test).toBe(false);
+        expect(event.test).toBe('something');
         expect(event.subject).toBe(webhookBody.message.operation);
         expect(event.eventType).toBe(eventType);
         expect(event.dataVersion).toBe('1.0');
