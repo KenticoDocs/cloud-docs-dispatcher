@@ -13,7 +13,7 @@ module.exports = async (context, request) => {
         return;
     }
 
-    if (request.body.message.type === 'content_item') {
+    if (request.body.message.type === 'content_item' && request.body.message.operation !== 'upsert') {
         context.res = {
             status: 200,
             body: 'Nothing published'
