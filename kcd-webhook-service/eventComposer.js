@@ -1,13 +1,17 @@
 const getUuid = require('uuid').v4;
 
 module.exports = (webhookBody, eventType, test) => {
+    const isTest = test === 'enabled' ? 'enabled' : 'disabled';
+
     return {
         id: getUuid(),
-        test,
         subject: webhookBody.message.operation,
-        eventType: eventType,
+        eventType,
         dataVersion: '1.0',
-        data: webhookBody.data,
+        data: {
+          test: isTest,
+          webhook: webhookBody.data,
+        },
         eventTime: new Date()
     };
 };
