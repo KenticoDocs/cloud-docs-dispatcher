@@ -16,5 +16,6 @@
       "direction": "out",
       "name": "res"
     }
-  ]
+  ],
+  "scriptFile": "..\\dist\\kcd-webhook-service\\index.js"
 }
