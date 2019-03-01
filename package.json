@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "Kentico Cloud Documentation - Dispatcher",
   "scripts": {
+    "build:production": "yarn run prestart",
+    "build": "tsc",
+    "eslint": "npx eslint .",
+    "prestart": "yarn run build && func extensions install",
+    "start:host": "func start",
+    "start": "yarn run start:host & yarn run watch",
     "test": "jest",
-    "eslint": "npx eslint ."
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -22,6 +28,9 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@azure/functions": "^1.0.1-beta2",
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.9.6",
     "eslint": "^5.13.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
@@ -29,6 +38,8 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "jest": "23.6.0"
+    "jest": "^24.1.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333"
   }
 }
