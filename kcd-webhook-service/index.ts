@@ -1,36 +1,59 @@
-const EventGridClient = require('azure-eventgrid');
-const msRestAzure = require('ms-rest-azure');
-const publishEventsCreator = require('./publishEventsCreator');
-const eventComposer = require('./eventComposer');
+import { AzureFunction, Context } from '@azure/functions';
+import EventGridClient from 'azure-eventgrid';
+import { TopicCredentials } from 'ms-rest-azure';
+import { HttpRequest, HttpResponse, RequestBody } from '../@types/global';
+import { eventComposer } from './eventComposer';
+import { publishEventsCreator } from './publishEventsCreator';
 
-module.exports = async (context, request) => {
-    if (request.query.source !== 'kentico-cloud') {
-        context.res = {
-            status: 400,
-            body: 'Request not valid'
-        };
+const isRequestBodyValid = (body: any): body is RequestBody =>
+  body
+  && body.message
+  && body.message.type
+  && body.message.operation
+  && body.data;
 
-        return;
-    }
+const shouldIgnoreRequest = ({ message: { type, operation } }: RequestBody): boolean =>
+  type === 'content_item' && operation !== 'upsert';
 
-    if (request.body.message.type === 'content_item' && request.body.message.operation !== 'upsert') {
-        context.res = {
-            status: 200,
-            body: 'Nothing published'
-        };
-
-        return;
-    }
-
-    const topicCredentials = new msRestAzure.TopicCredentials(process.env['EventGrid.DocsChanged.Key']);
-    const eventGridClient = new EventGridClient(topicCredentials);
-    const publishEvents = publishEventsCreator({ eventGridClient, host: process.env['EventGrid.DocsChanged.Endpoint'] });
-
-    var event = eventComposer(request.body, request.query.source, request.query.test);
-    await publishEvents([event]);
-
-    context.res = {
-        status: 200,
-        body: event
+const parseWebhook: AzureFunction = async (
+  _context: Context,
+  request: HttpRequest
+): Promise<HttpResponse> => {
+  if (request.query.source !== 'kentico-cloud') {
+    return {
+      body: 'Request not valid',
+      status: 400
     };
+  }
+
+  if (!isRequestBodyValid(request.body)) {
+    throw new Error('Received invalid message body');
+  }
+
+  if (shouldIgnoreRequest(request.body)) {
+    return {
+      body: 'Nothing published',
+      status: 200
+    };
+  }
+
+  const eventGridKey = process.env['EventGrid.DocsChanged.Key'];
+  const host = process.env['EventGrid.DocsChanged.Endpoint'];
+  if (!eventGridKey || !host) {
+    throw new Error('Undefined env property provided');
+  }
+
+  const topicCredentials = new TopicCredentials(eventGridKey);
+  const eventGridClient = new EventGridClient(topicCredentials);
+  const publishEvents = publishEventsCreator({ eventGridClient, host });
+
+  const event = eventComposer(request.body, request.query.source, request.query.test);
+  await publishEvents([event]);
+
+  return {
+    body: event,
+    status: 200
+  };
 };
+
+export default parseWebhook;
