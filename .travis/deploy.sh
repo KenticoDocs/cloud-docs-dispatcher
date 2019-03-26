@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 
 prepare_site_dir() {
     declare -r files=(
-        kcd-webhook-service
+        kcd-webhook-service/function.json
         extensions.csproj
         host.json
         package.json
@@ -17,6 +17,13 @@ prepare_site_dir() {
     for file in "${files[@]}"; do
         cp -R "$file" "$TMP_DIR"
     done
+
+    # copy tsc-built files
+    cd dist
+
+    find . -type f -not -iname '*.test.js' -not -name '*.js.map' -exec cp {} "../$TMP_DIR" ';'
+
+    cd "../"
 }
 
 update_website() {
@@ -38,6 +45,7 @@ update_website() {
 
 # Skip deployment for pull requests
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+    echo "Pull request detected. Aborting deploy"
     exit 0
 fi
 
@@ -47,6 +55,7 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
 elif [ "$TRAVIS_BRANCH" == "develop" ]; then
     GIT_DESTINATION=$GIT_DESTINATION_DEVELOP
 else
+    echo "Not on either master or develop branch. Aborting deploy"
     exit 0
 fi
 
