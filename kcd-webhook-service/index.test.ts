@@ -1,42 +1,55 @@
-const azureFunction = require('./index');
+import azureFunction from './index';
 
 describe('Azure function fails', () => {
+  let context = {};
+
+  beforeEach(() => {
+    context = {
+      done: jest.fn(),
+      res: null
+    };
+  });
+
   test('returns 400 on unknown event type', async () => {
     const request = {
-        query: {
-            source: 'unknown'
-        }
-    };
-    const context = {
-        res: null,
-        done: jest.fn()
+      query: {
+        source: 'unknown'
+      }
     };
 
-    await azureFunction(context, request, null);
+    const response = await azureFunction(context as any, request, null);
 
-    expect(context.res.status).toBe(400);
-    expect(context.res.body).toBe('Request not valid');
+    expect(response.status).toBe(400);
+    expect(response.body).toBe('Request not valid');
+  });
+
+  test('should throw if invalid request body was provided', async () => {
+    const request = {
+      query: {
+        source: 'kentico-cloud'
+      }
+    };
+
+    await expect(azureFunction((context as any), request)).rejects.toThrow();
   });
 
   test('returns 200 but does nothing on kentico-cloud and content_item', async () => {
     const request = {
-        query: {
-            source: 'kentico-cloud'
-        },
-        body: {
-            message: {
-                type: 'content_item'
-            }
+      body: {
+        data: 'anything',
+        message: {
+          operation: 'anything',
+          type: 'content_item'
         }
-    };
-    const context = {
-        res: null,
-        done: jest.fn()
+      },
+      query: {
+        source: 'kentico-cloud'
+      }
     };
 
-    await azureFunction(context, request, null);
+    const response = await azureFunction(context as any, request, null);
 
-    expect(context.res.status).toBe(200);
-    expect(context.res.body).toBe('Nothing published');
+    expect(response.status).toBe(200);
+    expect(response.body).toBe('Nothing published');
   });
 });
