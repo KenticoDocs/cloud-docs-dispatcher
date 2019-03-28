@@ -7,7 +7,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." \
 
 prepare_site_dir() {
     declare -r files=(
-        kcd-webhook-service/function.json
         extensions.csproj
         host.json
         package.json
@@ -18,12 +17,21 @@ prepare_site_dir() {
         cp -R "$file" "$TMP_DIR"
     done
 
-    # copy tsc-built files
-    cd dist
+    declare -r dirs=(
+        kcd-webhook-service
+    )
 
-    find . -type f -not -iname '*.test.js' -not -name '*.js.map' -exec cp {} "../$TMP_DIR" ';'
-
-    cd "../"
+    for dir in "${dirs[@]}"; do
+        # copy function.json
+        mkdir "$TMP_DIR/$dir/"
+        cp "$dir/function.json" "$TMP_DIR/$dir/function.json"
+        # copy tsc-built files
+        mkdir "$TMP_DIR/dist/"
+        mkdir "$TMP_DIR/dist/$dir"	
+        cd "dist/$dir"
+        find . -type f -not -iname '*.test.js' -not -name '*.js.map' -exec cp {} "../../$TMP_DIR/dist/$dir" ';'
+        cd "../.."
+    done
 }
 
 update_website() {
