@@ -7,7 +7,6 @@
   "rules": {
     "await-promise": true,
     "deprecation": true,
-    "linebreak-style": [true, "LF"],
     "no-floating-promises": true,
     "no-unnecessary-qualifier": true,
     "no-unnecessary-type-assertion": false,
