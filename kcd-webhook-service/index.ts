@@ -19,41 +19,46 @@ const parseWebhook: AzureFunction = async (
   _context: Context,
   request: HttpRequest
 ): Promise<HttpResponse> => {
-  if (request.query.source !== 'kentico-cloud') {
-    return {
-      body: 'Request not valid',
-      status: 400
-    };
-  }
+  try {
+    if (request.query.source !== 'kentico-cloud') {
+      return {
+        body: 'Request not valid',
+        status: 400
+      };
+    }
 
-  if (!isRequestBodyValid(request.body)) {
-    throw new Error('Received invalid message body');
-  }
+    if (!isRequestBodyValid(request.body)) {
+      throw new Error('Received invalid message body');
+    }
 
-  if (shouldIgnoreRequest(request.body)) {
+    if (shouldIgnoreRequest(request.body)) {
+      return {
+        body: 'Nothing published',
+        status: 200
+      };
+    }
+
+    const eventGridKey = process.env['EventGrid.DocsChanged.Key'];
+    const host = process.env['EventGrid.DocsChanged.Endpoint'];
+    if (!eventGridKey || !host) {
+      throw new Error('Undefined env property provided');
+    }
+
+    const topicCredentials = new TopicCredentials(eventGridKey);
+    const eventGridClient = new EventGridClient(topicCredentials);
+    const publishEvents = publishEventsCreator({ eventGridClient, host });
+
+    const event = eventComposer(request.body, request.query.source, request.query.test);
+    await publishEvents([event]);
+
     return {
-      body: 'Nothing published',
+      body: event,
       status: 200
     };
+  } catch (error) {
+    /** This try-catch is required for correct logging of exceptions in Azure */
+    throw `Message: ${error.message} \nStack Trace: ${error.stack}`;
   }
-
-  const eventGridKey = process.env['EventGrid.DocsChanged.Key'];
-  const host = process.env['EventGrid.DocsChanged.Endpoint'];
-  if (!eventGridKey || !host) {
-    throw new Error('Undefined env property provided');
-  }
-
-  const topicCredentials = new TopicCredentials(eventGridKey);
-  const eventGridClient = new EventGridClient(topicCredentials);
-  const publishEvents = publishEventsCreator({ eventGridClient, host });
-
-  const event = eventComposer(request.body, request.query.source, request.query.test);
-  await publishEvents([event]);
-
-  return {
-    body: event,
-    status: 200
-  };
 };
 
 export default parseWebhook;
