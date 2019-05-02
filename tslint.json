@@ -8,6 +8,7 @@
     "await-promise": true,
     "deprecation": true,
     "no-floating-promises": true,
+    "no-string-throw": false,
     "no-unnecessary-qualifier": true,
     "no-unnecessary-type-assertion": false,
     "semicolon": true,
