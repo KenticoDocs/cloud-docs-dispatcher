@@ -1,6 +1,6 @@
 | [master](https://github.com/Kentico/kentico-cloud-docs-webhooks/tree/master) | [develop](https://github.com/Kentico/kentico-cloud-docs-webhooks/tree/develop) |
 |:---:|:---:|
-|[![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher.svg?branch=master)](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/dbbf18e6-89db-4046-89d5-fa5920191169)](https://codebeat.co/projects/github-com-kentico-kentico-cloud-docs-webhooks-master) | [![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher.svg?branch=develop)](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/5444bea6-b966-436d-8738-f7787bf84956)](https://codebeat.co/projects/github-com-kentico-kentico-cloud-docs-webhooks-develop) |
+|[![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher.svg?branch=master)](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/3a601f9b-9291-4296-b6f6-efe4799c068b)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-dispatcher-master) | [![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher.svg?branch=develop)](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/6e4fefdf-0bf1-4c4a-8def-c2df33b6a8d9)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-dispatcher-develop) |
 
 # Kentico Cloud Documentation - Dispatcher
 
