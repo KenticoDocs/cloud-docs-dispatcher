@@ -4,7 +4,6 @@ import { RequestBody } from '../@types/global';
 
 export const eventComposer = (
   webhookBody: RequestBody,
-  eventType: string,
   test?: string
 ): EventGridModels.EventGridEvent => {
   const isTest = test === 'enabled' ? 'enabled' : 'disabled';
@@ -16,7 +15,7 @@ export const eventComposer = (
     },
     dataVersion: '1.0',
     eventTime: new Date(),
-    eventType,
+    eventType: 'kentico-cloud',
     id: getUuid(),
     subject: webhookBody.message.operation
   };

@@ -20,13 +20,6 @@ const parseWebhook: AzureFunction = async (
   request: HttpRequest
 ): Promise<HttpResponse> => {
   try {
-    if (request.query.source !== 'kentico-cloud') {
-      return {
-        body: 'Request not valid',
-        status: 400
-      };
-    }
-
     if (!isRequestBodyValid(request.body)) {
       throw new Error('Received invalid message body');
     }
@@ -48,7 +41,7 @@ const parseWebhook: AzureFunction = async (
     const eventGridClient = new EventGridClient(topicCredentials);
     const publishEvents = publishEventsCreator({ eventGridClient, host });
 
-    const event = eventComposer(request.body, request.query.source, request.query.test);
+    const event = eventComposer(request.body, request.query.test);
     await publishEvents([event]);
 
     return {
