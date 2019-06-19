@@ -6,10 +6,10 @@
 
 Backend function for Kentico Cloud documentation portal, which utilizes [Kentico Cloud](https://app.kenticocloud.com/) as a source of its content.
 
-The function responds to webhooks from Kentico Cloud and then notifies [search service](https://github.com/Kentico/kentico-cloud-docs-search) and [API reference service](https://github.com/Kentico/kentico-cloud-docs-api-reference) about changes in content.
+The function responds to webhooks from Kentico Cloud and then notifies [Tutorial Search Service](https://github.com/KenticoDocs/cloud-docs-tutorial-search) and [Reference Preprocessor](https://github.com/KenticoDocs/cloud-docs-reference-preprocessor) about changes in content.
 
 ## Overview
-1. This project is a JavaScript Azure Functions application.
+1. This project is a TypeScript Azure Functions application.
 2. It publishes events to an Azure [Event Grid](https://azure.microsoft.com/en-us/services/event-grid/) topic, where any number of subscribers can listen.
 3. Most importantly, the service forwards the type of Kentico Cloud operation along with codenames of the affected content items, so the subscribers can then act accordingly.
 
