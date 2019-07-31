@@ -1,22 +1,15 @@
+import { HttpRequest } from '@azure/functions/Interfaces';
 import { EventGridModels } from 'azure-eventgrid';
 import getUuid from 'uuid';
-import { RequestBody } from '../@types/global';
 
-export const eventComposer = (
-  webhookBody: RequestBody,
-  test?: string
-): EventGridModels.EventGridEvent => {
-  const isTest = test === 'enabled' ? 'enabled' : 'disabled';
-
-  return {
+export const eventComposer = ({body, query: {test}}: HttpRequest): EventGridModels.EventGridEvent => ({
     data: {
-      test: isTest,
-      webhook: webhookBody.data
+        test: test === 'enabled' ? test : 'disabled',
+        webhook: body.data,
     },
     dataVersion: '1.0',
     eventTime: new Date(),
     eventType: 'kentico-cloud',
     id: getUuid(),
-    subject: webhookBody.message.operation
-  };
-};
+    subject: body.message.operation,
+});
