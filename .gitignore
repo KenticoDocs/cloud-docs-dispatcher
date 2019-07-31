@@ -9,4 +9,6 @@ obj
 node_modules
 dist
 
+.idea/*
+
 local.settings.json

@@ -1,8 +1,7 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended",
-    "tslint-config-standard"
+    "tslint:recommended"
   ],
   "rules": {
     "await-promise": true,
@@ -12,6 +11,9 @@
     "no-unnecessary-qualifier": true,
     "no-unnecessary-type-assertion": false,
     "semicolon": true,
-    "strict-type-predicates": true
+    "strict-type-predicates": true,
+    "quotemark": [
+      true, "single"
+    ]
   }
 }
