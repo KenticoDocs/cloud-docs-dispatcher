@@ -1,0 +1,21 @@
+{
+  "message": {
+    "id": "<GUID>",
+    "type": "content_item_variant",
+    "operation": "publish",
+    "api_name": "delivery_production",
+    "project_id": "<GUID>",
+    "webhook_url": "<dispatcher_service>",
+    "created_timestamp": "<timestamp>"
+  },
+  "data": {
+    "items": [
+      {
+        "language": "default",
+        "codename": "<codename>",
+        "type": "<type>"
+      }
+    ],
+    "taxonomies": []
+  }
+}
