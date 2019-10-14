@@ -3,7 +3,7 @@ import { publishEventsCreator } from './publishEventsCreator';
 const eventGridClient = {
   publishEvents: jest.fn()
 };
-const host = 'fake.url-to-webhook.cloud';
+const host = 'fake.url-to-webhook.kontent';
 const fakeHost = `http://${host}/api/webhook`;
 const events = [
   {

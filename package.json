@@ -1,7 +1,7 @@
 {
-  "name": "kentico-cloud-docs-dispatcher",
+  "name": "kentico-kontent-docs-dispatcher",
   "version": "1.0.0",
-  "description": "Kentico Cloud Documentation - Dispatcher",
+  "description": "Kentico Kontent Documentation - Dispatcher",
   "scripts": {
     "build:production": "yarn run prestart",
     "build": "tsc",
@@ -14,28 +14,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kentico/kentico-cloud-docs-dispatcher.git"
+    "url": "git+https://github.com/Kentico/kentico-kontent-docs-dispatcher.git"
   },
   "author": "Kentico",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Kentico/kentico-cloud-docs-dispatcher/issues"
+    "url": "https://github.com/Kentico/kentico-kontent-docs-dispatcher/issues"
   },
-  "homepage": "https://github.com/Kentico/kentico-cloud-docs-dispatcher#readme",
+  "homepage": "https://github.com/Kentico/kentico-kontent-docs-dispatcher#readme",
   "dependencies": {
-    "azure-eventgrid": "^1.5.0",
-    "url": "^0.11.0",
-    "uuid": "^3.3.2"
+    "azure-eventgrid": "1.5.0",
+    "url": "0.11.0",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
-    "@azure/functions": "^1.0.1-beta2",
-    "@types/jest": "^24.0.9",
-    "@types/node": "^11.9.6",
-    "@types/uuid": "^3.4.4",
-    "jest": "^24.1.0",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.14.0",
-    "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.3.3333"
+    "@azure/functions": "1.0.1-beta2",
+    "@types/jest": "24.0.9",
+    "@types/node": "11.9.6",
+    "@types/uuid": "3.4.4",
+    "jest": "24.1.0",
+    "ts-jest": "24.0.0",
+    "tslint": "5.14.0",
+    "tslint-config-standard": "8.0.1",
+    "typescript": "3.3.3333"
   }
 }
