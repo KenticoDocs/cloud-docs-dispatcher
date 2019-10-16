@@ -10,7 +10,7 @@ const webhookBody = {
     type: ''
   }
 };
-const eventType = 'kentico-cloud';
+const eventType = 'kentico-kontent';
 
 describe('eventComposer', () => {
   test('composes event with data from webhook', async () => {

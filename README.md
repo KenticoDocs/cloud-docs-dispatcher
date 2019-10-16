@@ -1,24 +1,24 @@
-| [master](https://github.com/Kentico/kentico-cloud-docs-webhooks/tree/master) | [develop](https://github.com/Kentico/kentico-cloud-docs-webhooks/tree/develop) |
+| [master](https://github.com/KenticoDocs/kontent-docs-dispatcher/tree/master) | [develop](https://github.com/KenticoDocs/kontent-docs-dispatcher/tree/develop) |
 |:---:|:---:|
-|[![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher.svg?branch=master)](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/3a601f9b-9291-4296-b6f6-efe4799c068b)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-dispatcher-master) | [![Build Status](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher.svg?branch=develop)](https://travis-ci.com/KenticoDocs/cloud-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/6e4fefdf-0bf1-4c4a-8def-c2df33b6a8d9)](https://codebeat.co/projects/github-com-kenticodocs-cloud-docs-dispatcher-develop) |
+|[![Build Status](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher.svg?branch=master)](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/2bd543a0-469d-416f-8cac-55b6702408f4)](https://codebeat.co/projects/github-com-kenticodocs-kontent-docs-dispatcher-master) | [![Build Status](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher.svg?branch=develop)](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/0d112750-bba9-404e-93b4-6d95104f6cff)](https://codebeat.co/projects/github-com-kenticodocs-kontent-docs-dispatcher-develop) |
 
-# Kentico Cloud Documentation - Dispatcher
+# Kentico Kontent Documentation - Dispatcher
 
-Backend function for Kentico Cloud documentation portal, which utilizes [Kentico Cloud](https://app.kenticocloud.com/) as a source of its content.
+Backend function for Kentico Kontent documentation portal, which utilizes [Kentico Kontent](https://app.kontent.ai/) as a source of its data.
 
-The function responds to webhooks from Kentico Cloud and then notifies [Tutorial Search Service](https://github.com/KenticoDocs/cloud-docs-tutorial-search) and [Reference Preprocessor](https://github.com/KenticoDocs/cloud-docs-reference-preprocessor) about changes in content.
+The function responds to webhooks from Kentico Kontent and then notifies [Tutorial Search Service](https://github.com/KenticoDocs/kontent-docs-tutorial-search) and [Reference Preprocessor](https://github.com/KenticoDocs/kontent-docs-reference-preprocessor) about changes in content.
 
 ## Overview
 1. This project is a TypeScript Azure Functions application.
 2. It publishes events to an Azure [Event Grid](https://azure.microsoft.com/en-us/services/event-grid/) topic, where any number of subscribers can listen.
-3. Most importantly, the service forwards the type of Kentico Cloud operation along with codenames of the affected content items, so the subscribers can then act accordingly.
+3. Most importantly, the service forwards the type of Kentico Kontent operation along with codenames of the affected content items, so the subscribers can then act accordingly.
 
 ## Setup
 
 ### Prerequisites
 1. Node (+yarn) installed
 2. Visual Studio Code installed
-3. Subscriptions on MS Azure and Kentico Cloud
+3. Subscriptions on MS Azure and Kentico Kontent
 
 ### Instructions
 1. Open Visual Studio Code and install the prerequisites according to the [following steps](https://code.visualstudio.com/tutorials/functions-extension/getting-started).

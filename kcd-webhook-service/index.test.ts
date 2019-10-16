@@ -10,7 +10,7 @@ describe('Azure function fails', () => {
     };
   });
 
-  test('returns 200 but does nothing on kentico-cloud and content_item', async () => {
+  test('returns 200 but does nothing on kentico-kontent and content_item', async () => {
     const request = {
       body: {
         data: 'anything',
@@ -20,7 +20,7 @@ describe('Azure function fails', () => {
         }
       },
       query: {
-        source: 'kentico-cloud'
+        source: 'kentico-kontent'
       }
     };
 

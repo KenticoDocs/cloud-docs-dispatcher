@@ -15,7 +15,7 @@ export const eventComposer = (
     },
     dataVersion: '1.0',
     eventTime: new Date(),
-    eventType: 'kentico-cloud',
+    eventType: 'kentico-kontent',
     id: getUuid(),
     subject: webhookBody.message.operation
   };
