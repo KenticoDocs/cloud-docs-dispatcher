@@ -1,6 +1,6 @@
 | [master](https://github.com/KenticoDocs/kontent-docs-dispatcher/tree/master) | [develop](https://github.com/KenticoDocs/kontent-docs-dispatcher/tree/develop) |
 |:---:|:---:|
-|[![Build Status](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher.svg?branch=master)](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/2bd543a0-469d-416f-8cac-55b6702408f4)](https://codebeat.co/projects/github-com-kenticodocs-kontent-docs-dispatcher-master) | [![Build Status](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher.svg?branch=develop)](https://travis-ci.com/KenticoDocs/kontent-docs-dispatcher/branches) [![codebeat badge](https://codebeat.co/badges/0d112750-bba9-404e-93b4-6d95104f6cff)](https://codebeat.co/projects/github-com-kenticodocs-kontent-docs-dispatcher-develop) |
+|![master](https://github.com/KenticoDocs/kontent-docs-dispatcher/actions/workflows/master_kcd-webhook-service-live-master.yml/badge.svg) [![codebeat badge](https://codebeat.co/badges/2bd543a0-469d-416f-8cac-55b6702408f4)](https://codebeat.co/projects/github-com-kenticodocs-kontent-docs-dispatcher-master) | ![develop](https://github.com/KenticoDocs/kontent-docs-dispatcher/actions/workflows/develop_kcd-webhook-service-live-dev.yml/badge.svg) [![codebeat badge](https://codebeat.co/badges/0d112750-bba9-404e-93b4-6d95104f6cff)](https://codebeat.co/projects/github-com-kenticodocs-kontent-docs-dispatcher-develop) |
 
 # Kentico Kontent Documentation - Dispatcher
 
